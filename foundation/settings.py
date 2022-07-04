@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'corsheaders',
     'foundation',
-    'owners'
+    'owners',
+    'movies'
 ]
 
 MIDDLEWARE = [

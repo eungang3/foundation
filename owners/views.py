@@ -8,7 +8,7 @@ from owners.models import Owner, Dog
 
 class OwnersView(View):
     # 신규 주인 등록
-    # 요청 : http -v POST 127.0.0.1:8000/owners name='영희' email='younghee@naver.com' age=31
+    # 요청 : http -v POST 127.0.0.1:8000/owners/owners name='영희' email='younghee@naver.com' age=31
     def post(self, request):
         # http 요청 메시지에서 데이터 불러오기
         data = json.loads(request.body)
@@ -22,7 +22,7 @@ class OwnersView(View):
         return JsonResponse({'message' : 'created'}, status=201)
 
     # 주인 리스트 반환
-    # 요청 : http -v GET 127.0.0.1:8000/owners
+    # 요청 : http -v GET 127.0.0.1:8000/owners/owners
     def get(self, request):
         # DB에서 데이터 불러오기
         owners = Owner.objects.all()
@@ -40,7 +40,7 @@ class OwnersView(View):
 
 class DogsView(View):
     # 신규 강아지 등록
-    # 요청 : http -v POST 127.0.0.1:8000/dogs name='스누피' age='2' owner_id=1
+    # 요청 : http -v POST 127.0.0.1:8000/owners/dogs name='스누피' age='2' owner_id=1
     def post(self, request):
         # http 요청 메시지에서 데이터 불러오기
         data = json.loads(request.body)
@@ -57,7 +57,7 @@ class DogsView(View):
             return JsonResponse({'message': '주인 id가 존재하지 않습니다.'}, status=422)
 
     # 강아지 리스트 반환
-    # 요청 : http -v GET 127.0.0.1:8000/dogs
+    # 요청 : http -v GET 127.0.0.1:8000/owners/dogs
     def get(self, request):
         # DB에서 데이터 불러오기
         dogs = Dog.objects.all()
@@ -75,7 +75,7 @@ class DogsView(View):
 
 class DogOwnersView(View):
     # 각 주인에게 속한 강아지 리스트 반환
-    # 요청 : http -v GET 127.0.0.1:8000/dogowners
+    # 요청 : http -v GET 127.0.0.1:8000/owners/dogowners
     def get(self, request):
         # DB에서 데이터 불러오기
         owners = Owner.objects.all()
