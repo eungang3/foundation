@@ -15,14 +15,7 @@ class Movie(models.Model):
     title = models.CharField(max_length=45)
     release_date = models.DateField()
     running_time = models.IntegerField()
+    actor = models.ManyToManyField(Actor)
 
     class Meta:
         db_table = 'movies'
-
-class Actor_movie(models.Model):
-    id = models.AutoField(primary_key=True)
-    actor = models.ForeignKey(Actor, on_delete=models.CASCADE)
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-
-    class Meta:
-        db_table = 'actors_movies'
